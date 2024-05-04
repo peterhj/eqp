@@ -12,7 +12,7 @@
  *
  *************/
 
-static void p_binding(int vnum, Context_ptr vc, Term_ptr t, Context_ptr tc)
+/*static void p_binding(int vnum, Context_ptr vc, Term_ptr t, Context_ptr tc)
 {
   Term_ptr vt, ti;
   vt = get_term(0);
@@ -27,7 +27,7 @@ static void p_binding(int vnum, Context_ptr vc, Term_ptr t, Context_ptr tc)
   printf(")\n");
   free_term(vt);
   free_term(ti);
-}  /* p_binding */
+}*/  /* p_binding */
 
 /*************
  *

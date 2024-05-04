@@ -185,9 +185,9 @@ void print_discrim_mem(FILE *fp, int heading)
     if (heading)
 	fprintf(fp, "  type (bytes each)        gets      frees     in use      avail      bytes\n");
 
-    fprintf(fp, "discrim (%4d)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct discrim), discrim_gets, discrim_frees, discrim_gets - discrim_frees, discrim_avails, (((discrim_gets - discrim_frees) + discrim_avails) * sizeof(struct discrim)) / 1024.);
-    fprintf(fp, "flat (%4d)         %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct flat), flat_gets, flat_frees, flat_gets - flat_frees, flat_avails, (((flat_gets - flat_frees) + flat_avails) * sizeof(struct flat)) / 1024.);
-    fprintf(fp, "discrim_pos (%4d)  %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct discrim_pos), discrim_pos_gets, discrim_pos_frees, discrim_pos_gets - discrim_pos_frees, discrim_pos_avails, (((discrim_pos_gets - discrim_pos_frees) + discrim_pos_avails) * sizeof(struct discrim_pos)) / 1024.);
+    fprintf(fp, "discrim (%4ld)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct discrim), discrim_gets, discrim_frees, discrim_gets - discrim_frees, discrim_avails, (((discrim_gets - discrim_frees) + discrim_avails) * sizeof(struct discrim)) / 1024.);
+    fprintf(fp, "flat (%4ld)         %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct flat), flat_gets, flat_frees, flat_gets - flat_frees, flat_avails, (((flat_gets - flat_frees) + flat_avails) * sizeof(struct flat)) / 1024.);
+    fprintf(fp, "discrim_pos (%4ld)  %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct discrim_pos), discrim_pos_gets, discrim_pos_frees, discrim_pos_gets - discrim_pos_frees, discrim_pos_avails, (((discrim_pos_gets - discrim_pos_frees) + discrim_pos_avails) * sizeof(struct discrim_pos)) / 1024.);
 
 }  /* print_discrim_mem */
 
@@ -352,11 +352,12 @@ static Discrim_ptr discrim_insert_rec(Term_ptr t, Discrim_ptr d)
 	for (i = 0; i < t->arity; i++)
 	    d1 = discrim_insert_rec(t->args[i], d1);
 
-        if (d2)  /* link in new subtree (possibly a leaf) */
+        if (d2) { /* link in new subtree (possibly a leaf) */
 	    if (!prev)
 		d->u.kids = d2;
 	    else
 		prev->next = d2;
+        }
 	    
 	return(d1);  /* d1 is leaf corresp. to end of input term */
 	}
@@ -954,11 +955,12 @@ static Discrim_ptr discrim_wild_insert_rec(Term_ptr t, Discrim_ptr d)
 		d1 = discrim_wild_insert_rec(t->args[i], d1);
 	    }
 
-        if (d2)  /* link in new subtree (possibly a leaf) */
+        if (d2) { /* link in new subtree (possibly a leaf) */
 	    if (!prev)
 		d->u.kids = d2;
 	    else
 		prev->next = d2;
+        }
 	    
 	return(d1);  /* d1 is leaf corresp. to end of input term */
 	}

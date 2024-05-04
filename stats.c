@@ -12,6 +12,7 @@
 #include "Fpa.h"
 #include "Ac.h"      
 #include "Paramod.h"
+#include "Pindex.h"
 
  long Stats[MAX_STATS];
  struct clock Clocks[MAX_CLOCKS];

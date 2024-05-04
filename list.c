@@ -57,7 +57,7 @@ void print_list_mem(FILE *fp, int heading)
     if (heading)
 	fprintf(fp, "  type (bytes each)        gets      frees     in use      avail      bytes\n");
 
-    fprintf(fp, "gen_ptr (%4d)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct gen_ptr), gen_ptr_gets, gen_ptr_frees, gen_ptr_gets - gen_ptr_frees, gen_ptr_avails, (((gen_ptr_gets - gen_ptr_frees) + gen_ptr_avails) * sizeof(struct gen_ptr)) / 1024.);
+    fprintf(fp, "gen_ptr (%4ld)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct gen_ptr), gen_ptr_gets, gen_ptr_frees, gen_ptr_gets - gen_ptr_frees, gen_ptr_avails, (((gen_ptr_gets - gen_ptr_frees) + gen_ptr_avails) * sizeof(struct gen_ptr)) / 1024.);
 
 }  /* print_list_mem */
 

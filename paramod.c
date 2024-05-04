@@ -17,6 +17,8 @@
 #include "Clause.h"
 #include "Fpa.h"
 #include "Order.h"
+#include "Eqp.h"
+#include "Interp.h"
 #include "Paramod.h"
 
 /*************
@@ -339,7 +341,7 @@ void orient_eq_literals(Clause_ptr c)
 {
     Literal_ptr lit;
     Term_ptr t0, t1;
-    int w0, w1, oriented, flipped, n;
+    int w0, w1, /*oriented,*/ flipped, n;
 
     CLOCK_START(ORIENT_EQ_TIME)
     

@@ -2,6 +2,7 @@
 #include "Symbols.h" /* var_nam(), sn_to_str() */
 #include "List.h"
 #include "Clause.h"
+#include "Io.h"
 #include "Interp.h"
 
 /*************
@@ -211,7 +212,7 @@ int eval_clause_ground(Clause_ptr c, Interp_ptr p, int *vals)
 
 int eval_clause(Clause_ptr c, Interp_ptr p)
 {
-    int v, vals[MAX_VARS_EVAL], n, i, j;
+    int v, vals[MAX_VARS_EVAL], n, /*i,*/ j;
     int v0, v0_lim, v1, v1_lim, v2, v2_lim, v3, v3_lim, v4, v4_lim, v5, v5_lim;
     int v6, v6_lim, v7, v7_lim;
 

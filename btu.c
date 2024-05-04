@@ -418,8 +418,8 @@ void p_bt_tree(Bt_node_ptr bt, int n)
 	    printf("----");
 	printf(" bt_tree: %d\n", n);
 
-	print_term(stdout, bt->t1); printf(" [ 0x%x ]\n", (unsigned) bt->c1);
-	print_term(stdout, bt->t2); printf(" [ 0x%x ]\n", (unsigned) bt->c2);
+	print_term(stdout, bt->t1); printf(" [ 0x%lx ]\n", (size_t) bt->c1);
+	print_term(stdout, bt->t2); printf(" [ 0x%lx ]\n", (size_t) bt->c2);
 	p_context(bt->c1);
 	p_context(bt->c2);
 

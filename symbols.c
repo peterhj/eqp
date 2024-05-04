@@ -944,7 +944,7 @@ int compare_for_auto_lex_order(void *d1, void *d2)
 
 void auto_lex_order(void)
 {
-    int i, j, n, max;
+    int i, j, /*n,*/ max;
     struct sym_ent *p;
     struct sym_ent *a[500], **w[500];
 

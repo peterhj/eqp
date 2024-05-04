@@ -10,24 +10,26 @@ DFLAGS = -DTP_RUSAGE
 CC = gcc
 
 # CFLAGS = -g $(DFLAGS)
-CFLAGS = -O $(DFLAGS)
+CFLAGS = -O2 -Wall $(DFLAGS)
 # CFLAGS = -pg -O $(DFLAGS)
 
 FILES =   clocks.c avail.c term.c misc.c symbols.o io.c options.c unify.c ac.c dioph.c btu.c btm.c demod.c discrim.c fpa.c list.c clause.c paramod.c eqp.c lrpo.c pindex.c interp.c
 
 OBJECTS = clocks.o avail.o term.o misc.o io.o symbols.o options.o unify.o ac.o dioph.o btu.o btm.o demod.o discrim.o fpa.o list.o clause.o paramod.o eqp.o lrpo.o pindex.o interp.o
 
-ttest: ttest.o avail.o stats.o options.o symbols.o misc.o clocks.o term.o list.o io.o unify.o discrim.o fpa.o clause.o lrpo.o btm.o dioph.o ac.o btu.o demod.o paramod.o pindex.o interp.o eqp.o
-	$(CC) $(CFLAGS) -o ttest ttest.o avail.o stats.o options.o symbols.o misc.o clocks.o term.o list.o io.o unify.o discrim.o fpa.o clause.o lrpo.o btm.o dioph.o ac.o btu.o demod.o paramod.o pindex.o interp.o eqp.o
+#ttest: ttest.o avail.o stats.o options.o symbols.o misc.o clocks.o term.o list.o io.o unify.o discrim.o fpa.o clause.o lrpo.o btm.o dioph.o ac.o btu.o demod.o paramod.o pindex.o interp.o eqp.o
+#	$(CC) $(CFLAGS) -o ttest ttest.o avail.o stats.o options.o symbols.o misc.o clocks.o term.o list.o io.o unify.o discrim.o fpa.o clause.o lrpo.o btm.o dioph.o ac.o btu.o demod.o paramod.o pindex.o interp.o eqp.o
 
-eqp: main.o avail.o stats.o options.o symbols.o misc.o clocks.o term.o list.o io.o unify.o discrim.o fpa.o clause.o lrpo.o btm.o dioph.o ac.o btu.o demod.o paramod.o pindex.o interp.o eqp.o
+eqp09d: main.o avail.o stats.o options.o symbols.o misc.o clocks.o term.o list.o io.o unify.o discrim.o fpa.o clause.o lrpo.o btm.o dioph.o ac.o btu.o demod.o paramod.o pindex.o interp.o eqp.o
 	$(CC) $(CFLAGS) -o eqp09d main.o avail.o stats.o options.o symbols.o misc.o clocks.o term.o list.o io.o unify.o discrim.o fpa.o clause.o lrpo.o btm.o dioph.o ac.o btu.o demod.o paramod.o pindex.o interp.o eqp.o
 
 objects: $(OBJECTS)
 	echo "ok, objects made."
 
 clean:
-	/bin/rm *.o
+	rm -f *.o
+	rm -f eqp09d
+	#rm -f ttest
 
 main.o $(OBJECTS): Header.h
 main.o $(OBJECTS): Clocks.h

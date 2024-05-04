@@ -214,10 +214,10 @@ void print_ac_mem(FILE *fp, int heading)
     if (heading)
 	fprintf(fp, "  type (bytes each)        gets      frees     in use      avail      bytes\n");
 
-    fprintf(fp, "bt_node (%4d)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct bt_node), bt_node_gets, bt_node_frees, bt_node_gets - bt_node_frees, bt_node_avails, (((bt_node_gets - bt_node_frees) + bt_node_avails) * sizeof(struct bt_node)) / 1024.);
-    fprintf(fp, "ac_position (%4d)%11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct ac_position), ac_position_gets, ac_position_frees, ac_position_gets - ac_position_frees, ac_position_avails, (((ac_position_gets - ac_position_frees) + ac_position_avails) * sizeof(struct ac_position)) / 1024.);
-    fprintf(fp, "ac_match_pos (%4d)%11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct ac_match_pos), ac_match_pos_gets, ac_match_pos_frees, ac_match_pos_gets - ac_match_pos_frees, ac_match_pos_avails, (((ac_match_pos_gets - ac_match_pos_frees) + ac_match_pos_avails) * sizeof(struct ac_match_pos)) / 1024.);
-    fprintf(fp, "ac_match_free_vars_pos (%4d)\n                    %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct ac_match_free_vars_pos), ac_match_free_vars_pos_gets, ac_match_free_vars_pos_frees, ac_match_free_vars_pos_gets - ac_match_free_vars_pos_frees, ac_match_free_vars_pos_avails, (((ac_match_free_vars_pos_gets - ac_match_free_vars_pos_frees) + ac_match_free_vars_pos_avails) * sizeof(struct ac_match_free_vars_pos)) / 1024.);
+    fprintf(fp, "bt_node (%4ld)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct bt_node), bt_node_gets, bt_node_frees, bt_node_gets - bt_node_frees, bt_node_avails, (((bt_node_gets - bt_node_frees) + bt_node_avails) * sizeof(struct bt_node)) / 1024.);
+    fprintf(fp, "ac_position (%4ld)%11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct ac_position), ac_position_gets, ac_position_frees, ac_position_gets - ac_position_frees, ac_position_avails, (((ac_position_gets - ac_position_frees) + ac_position_avails) * sizeof(struct ac_position)) / 1024.);
+    fprintf(fp, "ac_match_pos (%4ld)%11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct ac_match_pos), ac_match_pos_gets, ac_match_pos_frees, ac_match_pos_gets - ac_match_pos_frees, ac_match_pos_avails, (((ac_match_pos_gets - ac_match_pos_frees) + ac_match_pos_avails) * sizeof(struct ac_match_pos)) / 1024.);
+    fprintf(fp, "ac_match_free_vars_pos (%4ld)\n                    %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct ac_match_free_vars_pos), ac_match_free_vars_pos_gets, ac_match_free_vars_pos_frees, ac_match_free_vars_pos_gets - ac_match_free_vars_pos_frees, ac_match_free_vars_pos_avails, (((ac_match_free_vars_pos_gets - ac_match_free_vars_pos_frees) + ac_match_free_vars_pos_avails) * sizeof(struct ac_match_free_vars_pos)) / 1024.);
 
 }  /* print_ac_mem */
 
@@ -503,7 +503,7 @@ int check_ac_canonical(Term_ptr t)
  *
  *************/
 
-static void compact_args(Term_ptr *a, int *np)
+/*static void compact_args(Term_ptr *a, int *np)
 {
     int avail, i;
 
@@ -515,7 +515,7 @@ static void compact_args(Term_ptr *a, int *np)
 	}
     if (avail != -1)
 	*np = avail;
-}  /* compact_args */
+}*/  /* compact_args */
 
 /*************
  *

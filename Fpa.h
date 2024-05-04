@@ -93,6 +93,8 @@ Term_ptr fpa_bt_retrieve_next(Fpa_pos_ptr pos);
 
 void fpa_bt_cancel(Fpa_pos_ptr pos);
 
+void free_dangle_list(void);
+
 void print_fpa_index_summary(FILE *fp, Fpa_index_ptr p);
 
 #endif  /* ! TP_FPA_H */

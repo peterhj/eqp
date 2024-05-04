@@ -139,8 +139,8 @@ void print_unify_mem(FILE *fp, int heading)
     if (heading)
 	fprintf(fp, "  type (bytes each)        gets      frees     in use      avail      bytes\n");
 
-    fprintf(fp, "context (%4d)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct context), context_gets, context_frees, context_gets - context_frees, context_avails, (((context_gets - context_frees) + context_avails) * sizeof(struct context)) / 1024.);
-    fprintf(fp, "trail (%4d)        %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct trail), trail_gets, trail_frees, trail_gets - trail_frees, trail_avails, (((trail_gets - trail_frees) + trail_avails) * sizeof(struct trail)) / 1024.);
+    fprintf(fp, "context (%4ld)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct context), context_gets, context_frees, context_gets - context_frees, context_avails, (((context_gets - context_frees) + context_avails) * sizeof(struct context)) / 1024.);
+    fprintf(fp, "trail (%4ld)        %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct trail), trail_gets, trail_frees, trail_gets - trail_frees, trail_avails, (((trail_gets - trail_frees) + trail_avails) * sizeof(struct trail)) / 1024.);
 
 }  /* print_unify_mem */
 
@@ -581,9 +581,9 @@ void print_context(FILE *fp, Context_ptr c)
 	    if (c->terms[i] != NULL) {
 		t->symbol = i;
 		print_term(fp, t);
-		fprintf(fp, " [0x%x] -> ", (unsigned) c);
+		fprintf(fp, " [0x%lx] -> ", (size_t) c);
 		print_term(fp, c->terms[i]);
-		fprintf(fp, " [0x%x:%d]\n", (unsigned) c->contexts[i], c->contexts[i]->multiplier);
+		fprintf(fp, " [0x%lx:%d]\n", (size_t) c->contexts[i], c->contexts[i]->multiplier);
 		}
 	if (c->partial_term) {
 	    printf("partial_term: ");
@@ -604,7 +604,7 @@ void print_context(FILE *fp, Context_ptr c)
 	    if (c->terms[i] != NULL) {
 		fprintf(fp, "v%d -> ", i);
 		print_term(fp, c->terms[i]);
-		fprintf(fp, " context %x\n", (unsigned) c->contexts[i]);
+		fprintf(fp, " context %lx\n", (size_t) c->contexts[i]);
 		}
 	if (c->partial_term) {
 	    printf("partial_term: ");
@@ -638,7 +638,7 @@ void print_trail(FILE *fp, Trail_ptr t)
     fprintf(fp, "Trail:");
     t2 = t;
     while (t2 != NULL) {
-	fprintf(fp, " <%d,%x>", t2->varnum, (unsigned) t2->context);
+	fprintf(fp, " <%d,%lx>", t2->varnum, (size_t) t2->context);
 	t2 = t2->next;
 	}
     fprintf(fp, ".\n");

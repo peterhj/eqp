@@ -12,5 +12,7 @@ Term_ptr demodulate_bt(Term_ptr t, void *demods, int psn, Gen_ptr_ptr *head_ptr)
 
 int simplifiable_bt(Term_ptr t, int psn, void *demods);
 
+int simplifiable(Term_ptr t, Discrim_ptr demods);
+
 
 #endif  /* ! TP_DEMOD_H */

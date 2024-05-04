@@ -191,10 +191,10 @@ void print_clause_mem(FILE *fp, int heading)
     if (heading)
 	fprintf(fp, "  type (bytes each)        gets      frees     in use      avail      bytes\n");
 
-    fprintf(fp, "literal (%4d)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct literal), literal_gets, literal_frees, literal_gets - literal_frees, literal_avails, (((literal_gets - literal_frees) + literal_avails) * sizeof(struct literal)) / 1024.);
-    fprintf(fp, "clause (%4d)       %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct clause), clause_gets, clause_frees, clause_gets - clause_frees, clause_avails, (((clause_gets - clause_frees) + clause_avails) * sizeof(struct clause)) / 1024.);
-    fprintf(fp, "list (%4d)         %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct list), list_gets, list_frees, list_gets - list_frees, list_avails, (((list_gets - list_frees) + list_avails) * sizeof(struct list)) / 1024.);
-    fprintf(fp, "list_pos (%4d)     %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct list_pos), list_pos_gets, list_pos_frees, list_pos_gets - list_pos_frees, list_pos_avails, (((list_pos_gets - list_pos_frees) + list_pos_avails) * sizeof(struct list_pos)) / 1024.);
+    fprintf(fp, "literal (%4ld)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct literal), literal_gets, literal_frees, literal_gets - literal_frees, literal_avails, (((literal_gets - literal_frees) + literal_avails) * sizeof(struct literal)) / 1024.);
+    fprintf(fp, "clause (%4ld)       %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct clause), clause_gets, clause_frees, clause_gets - clause_frees, clause_avails, (((clause_gets - clause_frees) + clause_avails) * sizeof(struct clause)) / 1024.);
+    fprintf(fp, "list (%4ld)         %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct list), list_gets, list_frees, list_gets - list_frees, list_avails, (((list_gets - list_frees) + list_avails) * sizeof(struct list)) / 1024.);
+    fprintf(fp, "list_pos (%4ld)     %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct list_pos), list_pos_gets, list_pos_frees, list_pos_gets - list_pos_frees, list_pos_avails, (((list_pos_gets - list_pos_frees) + list_pos_avails) * sizeof(struct list_pos)) / 1024.);
 
 }  /* print_clause_mem */
 

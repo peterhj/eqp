@@ -73,6 +73,8 @@ void copy_nonbasic_marks(Term_ptr t1, Term_ptr t2);
 
 void all_nonbasic(Term_ptr t);
 
+void clear_all_nonbasic(Term_ptr t);
+
 void set_term_scratch(Term_ptr t);
 
 void clear_term_scratch(Term_ptr t);

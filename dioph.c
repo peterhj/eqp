@@ -636,7 +636,7 @@ int next_combo_a(int length, int (*basis)[MAX_COEF], int num_basis, int *constra
  int all_combos(int m, int n, int (*basis)[MAX_COEF], int num_basis, int *constraints, int (*proc) (/* ??? */))
 {
     int combo[MAX_BASIS], sum[MAX_COEF];
-    int count, i, j, k, ok;
+    int count, /*i,*/ j, /*k,*/ ok;
     
     count = 0;
     ok = (*proc)(m+n, basis, num_basis, constraints, combo, sum, 1);

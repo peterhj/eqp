@@ -15,8 +15,8 @@
 #include "Paramod.h"
 #include "Pindex.h"
 #include "Demod.h"
-#include "Eqp.h"
 #include "Interp.h"
+#include "Eqp.h"
 
 /****************** Global variables for eqp (EQ prover)  ************/
 
@@ -487,6 +487,8 @@ void check_for_proof(Clause_ptr c)
     Clause_ptr conflictor;
     int xx_proof;
 
+    printf("check_for_proof.\n");
+
     if (literal_count(c) != 1) return;
 
     CLOCK_START(CONFLICT_TIME)
@@ -816,11 +818,11 @@ void demodulate_cl(Clause_ptr c)
 
 void back_demodulate(Clause_ptr demod, int input)
 {
-    List_pos_ptr p;
+    /*List_pos_ptr p;*/
     List_ptr to_be_back_demodulated;
     Term_ptr alpha;
     Clause_ptr c, new_c;
-    int i;
+    /*int i;*/
     Gen_ptr_ptr p1, p2;
 
     alpha = demod->literals->atom->args[0];
@@ -938,6 +940,8 @@ Clause_ptr process_clause(Clause_ptr c, int input)
 {
     Clause_ptr subsumer;
 
+    printf("process_clause.\n");
+
     Stats[input ? CLAUSES_GENERATED_INPUT : CLAUSES_GENERATED]++;
     if (Flags[PRINT_GEN].val) {
         printf("Processing: ");
@@ -968,7 +972,7 @@ Clause_ptr process_clause(Clause_ptr c, int input)
 	Stats[CLAUSES_WT_DELETE]++;
 	Stats[CLAUSES_VAR_DELETE]++;
 	}
-    else if (subsumer = forward_subsume(c)) {
+    else if ((subsumer = forward_subsume(c))) {
 	if (input || Flags[PRINT_FORWARD_SUBSUMED].val) {
 	    fprintf(stdout, "clause forward subsumed: ");
 	    print_clause(stdout, c); fflush(stdout);
@@ -1093,6 +1097,17 @@ void process_derived_clause(Clause_ptr c)
 static Clause_ptr find_given_clause(void)
 {
     Clause_ptr c;
+
+    List_pos_ptr gp;
+    int sos_ct = 0;
+    for (gp = Sos->first; gp; gp = gp->next) {
+        sos_ct++;
+    }
+    int usb_ct = 0;
+    for (gp = Usable->first; gp; gp = gp->next) {
+        usb_ct++;
+    }
+    printf("find_given_clause: sos.ct=%d usb.ct=%d\n", sos_ct, usb_ct);
 
     if (!Sos->first)
         c = NULL;
@@ -1226,7 +1241,7 @@ void make_inferences(void)
 		int t0, t1, g0, g1;
 		if (Flags[PRINT_PAIRS].val) {
 		    t0 = run_time(); g0 = Stats[CLAUSES_GENERATED];
-		    printf("\nClause pair #%d: (pr_wt=%d) ",
+		    printf("\nClause pair #%ld: (pr_wt=%d) ",
 			   Stats[GIVEN],
 			   c1->weight + c2->weight);
 		    print_clause(stdout, c1);
@@ -1258,7 +1273,7 @@ void make_inferences(void)
 	index_for_paramod(given, 1);
 
 	if (Flags[PRINT_GIVEN].val) {
-	    fprintf(stdout, "\ngiven clause #%d: ", Stats[GIVEN]);
+	    fprintf(stdout, "\ngiven clause #%ld: ", Stats[GIVEN]);
 	    print_clause(stdout, given);
 	    fflush(stdout);
 	    }
@@ -1362,6 +1377,7 @@ p_pair_index(Para_pairs_breadth);
 #endif
     
     /* --------- HERE IS THE MAIN LOOP --------- */
+    printf("\nBegin main loop...\n");
 
     while (Stats[GIVEN] < Parms[MAX_GIVEN].val &&
            run_time()/1000 < Parms[MAX_SECONDS].val &&
@@ -1372,6 +1388,7 @@ p_pair_index(Para_pairs_breadth);
 
         }
 
+    printf("\nEnd main loop.\n");
     /* --------- END OF THE MAIN LOOP --------- */
 
     if (!inferences_to_make()) {

@@ -169,9 +169,9 @@ void print_fpa_mem(FILE *fp, int heading)
 {
     if (heading)
 	fprintf(fp, "  type (bytes each)        gets      frees     in use      avail      bytes\n");
-    fprintf(fp, "fpa_head (%4d)     %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct fpa_head), fpa_head_gets, fpa_head_frees, fpa_head_gets - fpa_head_frees, fpa_head_avails, (((fpa_head_gets - fpa_head_frees) + fpa_head_avails) * sizeof(struct fpa_head)) / 1024.);
-    fprintf(fp, "fpa_tree (%4d)     %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct fpa_tree), fpa_tree_gets, fpa_tree_frees, fpa_tree_gets - fpa_tree_frees, fpa_tree_avails, (((fpa_tree_gets - fpa_tree_frees) + fpa_tree_avails) * sizeof(struct fpa_tree)) / 1024.);
-    fprintf(fp, "fpa_pos (%4d)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct fpa_pos), fpa_pos_gets, fpa_pos_frees, fpa_pos_gets - fpa_pos_frees, fpa_pos_avails, (((fpa_pos_gets - fpa_pos_frees) + fpa_pos_avails) * sizeof(struct fpa_pos)) / 1024.);
+    fprintf(fp, "fpa_head (%4ld)     %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct fpa_head), fpa_head_gets, fpa_head_frees, fpa_head_gets - fpa_head_frees, fpa_head_avails, (((fpa_head_gets - fpa_head_frees) + fpa_head_avails) * sizeof(struct fpa_head)) / 1024.);
+    fprintf(fp, "fpa_tree (%4ld)     %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct fpa_tree), fpa_tree_gets, fpa_tree_frees, fpa_tree_gets - fpa_tree_frees, fpa_tree_avails, (((fpa_tree_gets - fpa_tree_frees) + fpa_tree_avails) * sizeof(struct fpa_tree)) / 1024.);
+    fprintf(fp, "fpa_pos (%4ld)      %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct fpa_pos), fpa_pos_gets, fpa_pos_frees, fpa_pos_gets - fpa_pos_frees, fpa_pos_avails, (((fpa_pos_gets - fpa_pos_frees) + fpa_pos_avails) * sizeof(struct fpa_pos)) / 1024.);
 
 }  /* print_fpa_mem */
 
@@ -990,7 +990,7 @@ void print_fpa_index(FILE *fp, Fpa_index_ptr p)
     Fpa_head_ptr f;
     Gen_ptr_ptr g;
     
-    fprintf(fp, "\nFpa index %x, depth=%d.\n", (unsigned) p, p->depth);
+    fprintf(fp, "\nFpa index %lx, depth=%d.\n", (size_t) p, p->depth);
     for (i=0; i<FPA_SIZE; i++) {
 	if (p->table[i]) {
 	    fprintf(fp, "bucket %d\n", i);
@@ -999,7 +999,7 @@ void print_fpa_index(FILE *fp, Fpa_index_ptr p)
 		print_path(fp, f->path);
 		g = f->list;
 		while (g) {
-		    fprintf(fp, " %d:", g->u.t->fpa_id);
+		    fprintf(fp, " %ld:", g->u.t->fpa_id);
 		    print_term(fp, g->u.t);
 		    g = g->next;
 		    }
@@ -1335,7 +1335,7 @@ void print_fpa_index_summary(FILE *fp, Fpa_index_ptr p)
     if (!p)
 	return;
     
-    fprintf(fp, "\nFpa index %x, depth=%d.\n", (unsigned) p, p->depth);
+    fprintf(fp, "\nFpa index %lx, depth=%d.\n", (size_t) p, p->depth);
 
     for (i = 0; i < FPA_SIZE; i++) {
 	if (p->table[i]) {

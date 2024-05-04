@@ -1,3 +1,4 @@
+#include "Misc.h"
 #include "Options.h"
 
  struct flag Flags[MAX_FLAGS];

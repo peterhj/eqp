@@ -496,7 +496,7 @@ void print_clause_pair_mem(FILE *fp, int heading)
     if (heading)
 	fprintf(fp, "  type (bytes each)        gets      frees     in use      avail      bytes\n");
 
-    fprintf(fp, "pair_index (%5d)    %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct pair_index), pair_index_gets, pair_index_frees, pair_index_gets - pair_index_frees, pair_index_avails, (((pair_index_gets - pair_index_frees) + pair_index_avails) * sizeof(struct pair_index)) / 1024.);
+    fprintf(fp, "pair_index (%5ld)  %11ld%11ld%11ld%11ld%9.1f K\n", sizeof(struct pair_index), pair_index_gets, pair_index_frees, pair_index_gets - pair_index_frees, pair_index_avails, (((pair_index_gets - pair_index_frees) + pair_index_avails) * sizeof(struct pair_index)) / 1024.);
 }  /* print_pindex_mem */
 
 /*************

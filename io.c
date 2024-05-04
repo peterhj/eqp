@@ -1234,19 +1234,19 @@ static int read_buf(FILE *fp, char *buf)
 	    }
 	}
     else if (eof_q) {
-	char s[500];
+	char s[5120];
 	buf[i>100 ? 100 : i] = '\0';
 	sprintf(s, "read_buf, quoted string has no end:%s", buf);
 	abend(s);
 	}
     else if (max) {
-	char s[500];
+	char s[5120];
 	buf[i>100 ? 100 : i] = '\0';
 	sprintf(s, "read_buf, input string has more than %d characters, increase MAX_BUF", MAX_BUF);
 	abend(s);
 	}
     else {  /* max_q */
-	char s[500];
+	char s[5120];
 	buf[i>100 ? 100 : i] = '\0';
 	sprintf(s, "read_buf, input string (which contains quote mark) has more than %d characters, increase MAX_BUF", MAX_BUF);
 	abend(s);
@@ -1304,7 +1304,7 @@ static Term_ptr term_fixup(Term_ptr t)
  *
  *************/
 
-static Term_ptr term_fixup_2(Term_ptr t)
+/*static Term_ptr term_fixup_2(Term_ptr t)
 {
     Term_ptr t1;
     int i;
@@ -1318,7 +1318,7 @@ static Term_ptr term_fixup_2(Term_ptr t)
     for (i = 0; i < t->arity; i++)
 	t->args[i] = term_fixup_2(t->args[i]);
     return(t);
-}  /* term_fixup_2 */
+}*/  /* term_fixup_2 */
 
 /*************
  *
